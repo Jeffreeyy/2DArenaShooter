@@ -7,12 +7,14 @@ public class PlayerInput : MonoBehaviour
     private PlayerMovement _movement;
     private PlayerAbilities _abilities;
     private PlayerPower _playerPower;
+    private PlayerShoot _playerShoot;
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
         _abilities = GetComponent<PlayerAbilities>();
         _playerPower = GetComponent<PlayerPower>();
+        _playerShoot = GetComponent<PlayerShoot>();
     }
 
 	void Update () 
@@ -47,7 +49,10 @@ public class PlayerInput : MonoBehaviour
         //ABILITY 2
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            _abilities.Punch();
+            if (_playerShoot.canShoot)
+            {
+                StartCoroutine(_playerShoot.Shoot());
+            }
         }
 
         if(!Input.anyKey && !Input.anyKeyDown)
