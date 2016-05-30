@@ -62,4 +62,10 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(Vector2.right * _movementSpeed * Time.deltaTime);
         }
     }
+
+    public void Jetpack()
+    {
+        _movementSpeed = 0.5f;
+        _rb.velocity = Vector3.up;
+    }
 }

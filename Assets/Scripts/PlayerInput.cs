@@ -42,7 +42,7 @@ public class PlayerInput : MonoBehaviour
         //ABILITY 1
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            _abilities.ActivateSpeedBuff();
+            _movement.Jetpack();
         }
         else
             _abilities.DeactivateSpeedBuff();
