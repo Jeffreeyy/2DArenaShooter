@@ -48,7 +48,7 @@ public class PlayerInput : MonoBehaviour
             _jetpackFuel.IsUsingJetpack = false;
             _jetpackFuel.IsDrainingFuel = false;
         //ABILITY 2
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (_playerShoot.canShoot)
             {
