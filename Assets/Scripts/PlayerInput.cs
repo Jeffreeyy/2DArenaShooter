@@ -5,14 +5,14 @@ using System.Collections;
 public class PlayerInput : MonoBehaviour 
 {
     private PlayerMovement _movement;
-    private PlayerAbilities _abilities;
-    private PlayerPower _playerPower;
+    private PlayerJetpack _playerJetpack;
+    private JetpackFuel _jetpackFuel;
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
-        _abilities = GetComponent<PlayerAbilities>();
-        _playerPower = GetComponent<PlayerPower>();
+        _playerJetpack = GetComponent<PlayerJetpack>();
+        _jetpackFuel = GetComponent<JetpackFuel>();
     }
 
 	void Update () 
@@ -40,23 +40,14 @@ public class PlayerInput : MonoBehaviour
         //ABILITY 1
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            _abilities.ActivateSpeedBuff();
+            _playerJetpack.ActivateJetpack();
         }
         else
-            _abilities.DeactivateSpeedBuff();
+            _playerJetpack.DeactivateJetpack();
         //ABILITY 2
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            _abilities.Punch();
-        }
-
-        if(!Input.anyKey && !Input.anyKeyDown)
-        {
-            _playerPower.IsStandingStill = true;
-        }
-        else
-        {
-            _playerPower.IsStandingStill = false;
+            //_playerJetpack.Punch();
         }
 	}
 }
