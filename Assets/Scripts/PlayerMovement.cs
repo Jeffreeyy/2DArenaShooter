@@ -5,19 +5,8 @@ using System.Collections;
 [RequireComponent(typeof(PlayerCollisionChecker))]
 public class PlayerMovement : MonoBehaviour 
 {
-    private float _movementSpeed = 1;
-    public float MovementSpeed
-    {
-        get
-        {
-            return _movementSpeed;
-        }
-        set
-        {
-            _movementSpeed = value;
-        }
-    }
-    [SerializeField]private bool _duck = false;
+    [SerializeField]private float _movementSpeed;
+    private bool _duck = false;
     public bool Duck
     {
         get
@@ -53,22 +42,23 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveLeft()
     {
-        if(_colChecker.CanMoveLeft())
+        if (_colChecker.CanMove(-1))
         {
-            transform.Translate(Vector2.left * _movementSpeed * Time.deltaTime);
+            _rb.MovePosition(_rb.position + (Vector3.left * _movementSpeed * Time.deltaTime));
         }
     }
 
     public void MoveRight()
     {
-        if (_colChecker.CanMoveRight())
+        if (_colChecker.CanMove(1))
         {
-            transform.Translate(Vector2.right * _movementSpeed * Time.deltaTime);
+            _rb.MovePosition(_rb.position + (Vector3.right * _movementSpeed * Time.deltaTime));
         }
     }
 
     public void Jetpack()
     {
-        _rb.velocity = Vector3.up;
+        _rb.AddForce(Vector3.up * 10, ForceMode.Acceleration);
+        Debug.Log(_rb.velocity);
     }
 }

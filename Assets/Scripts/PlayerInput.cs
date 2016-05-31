@@ -38,10 +38,7 @@ public class PlayerInput : MonoBehaviour
             _movement.MoveRight();
         }
         //ABILITY 1
-<<<<<<< HEAD
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-=======
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             _playerJetpack.ActivateJetpack();
             _movement.Jetpack();
@@ -49,8 +46,7 @@ public class PlayerInput : MonoBehaviour
         else
             _playerJetpack.DeactivateJetpack();
         //ABILITY 2
-        if (Input.GetKeyDown(KeyCode.Mouse1))
->>>>>>> origin/master
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //_playerJetpack.Punch();
             if (_playerShoot.canShoot)
@@ -58,22 +54,5 @@ public class PlayerInput : MonoBehaviour
                 StartCoroutine(_playerShoot.Shoot());
             }
         }
-<<<<<<< HEAD
-        //ABILITY 2
-        if (Input.GetKey(KeyCode.Mouse1))
-        {
-            _movement.Jetpack();
-        }
-
-        if(!Input.anyKey && !Input.anyKeyDown)
-        {
-            _playerPower.IsStandingStill = true;
-        }
-        else
-        {
-            _playerPower.IsStandingStill = false;
-        }
-=======
->>>>>>> origin/master
 	}
 }

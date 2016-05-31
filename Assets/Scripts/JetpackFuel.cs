@@ -4,7 +4,7 @@ using System.Collections;
 public class JetpackFuel : MonoBehaviour 
 {
     private float _drainRate = .1f;
-    private float _drainAmount = 1;
+    private float _drainAmount = 10;
     private float _rechargeRate = .1f;
     private float _rechargeAmount = .2f;
     private float _maxFuel;

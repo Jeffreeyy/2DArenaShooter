@@ -12,12 +12,11 @@ public class PlayerCollisionChecker : MonoBehaviour
             return _canJump;
         }
     }
-    [SerializeField]private bool _canMoveRight = false;
-    [SerializeField]private bool _canMoveLeft = false;
+    private bool _canMove;
+
     private bool _canDisableCol = false;
 
-    [SerializeField]private float _obstacleRaycastRange;
-    [SerializeField]private float _groundRaycastRange;
+    [SerializeField]private float _raycastRange;
     private Collision _collidingObject;
 
     void Awake()
@@ -60,41 +59,26 @@ public class PlayerCollisionChecker : MonoBehaviour
         _canJump = false;
     }
 
-    public bool CanMoveRight()
+    public bool CanMove(int dir)
     {
-        Vector3 rayOrigin = transform.position;
-
-        Ray ray = new Ray();
-        ray.origin = rayOrigin;
-        ray.direction = Vector3.right;
-
-        if (Physics.Raycast(ray, _obstacleRaycastRange, 1 << 9))
+        float yOffset = 0.05f;
+        for(int i = 0; i < 3; i ++)
         {
-            _canMoveRight = false;
-        }
-        else
-        {
-            _canMoveRight = true;
-        }
-        return _canMoveRight;
-    }
-    public bool CanMoveLeft()
-    {
-        Vector3 rayOrigin = transform.position;
+            float y = -yOffset + (yOffset * i);
+            Vector3 rayOrigin = new Vector3(transform.position.x, transform.position.y + y, transform.position.z);
+            Ray ray = new Ray(rayOrigin, new Vector3(dir, 0f, 0f));
+            Debug.DrawRay(ray.origin, ray.direction * _raycastRange);
+            if (Physics.Raycast(ray, _raycastRange, 1 << 9))
+            {
+                _canMove = false;
+            }
+            else
+            {
+                _canMove = true;
+            }
 
-        Ray ray = new Ray();
-        ray.origin = rayOrigin;
-        ray.direction = Vector3.left;
-
-        if (Physics.Raycast(ray, _obstacleRaycastRange, 1 << 9))
-        {
-            _canMoveLeft = false;
         }
-        else
-        {
-            _canMoveLeft = true;
-        }
-        return _canMoveLeft;
+        return _canMove;
     }
 
     IEnumerator DisableGroundCollision(Collision col,float sec)
