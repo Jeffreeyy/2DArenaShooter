@@ -40,19 +40,17 @@ public class PlayerInput : MonoBehaviour
             _movement.MoveRight();
         }
         //ABILITY 1
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            _movement.Jetpack();
-        }
-        else
-            _abilities.DeactivateSpeedBuff();
-        //ABILITY 2
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (_playerShoot.canShoot)
             {
                 StartCoroutine(_playerShoot.Shoot());
             }
+        }
+        //ABILITY 2
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            _movement.Jetpack();
         }
 
         if(!Input.anyKey && !Input.anyKeyDown)

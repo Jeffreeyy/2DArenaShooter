@@ -32,11 +32,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     private PlayerCollisionChecker _colChecker;
     [SerializeField]private float _jumpSpeed;
+    private AudioSource _jumpSound;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _colChecker = GetComponent<PlayerCollisionChecker>();
+        _jumpSound = GetComponent<AudioSource>();
     }
 
     public void JumpUp()
@@ -44,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         if (_colChecker.CanJump)
         {
             _rb.velocity = new Vector3(0, _jumpSpeed, 0);
+            _jumpSound.pitch = Random.Range(.75f, 1.25f);
+            _jumpSound.Play();
         }
     }
 
@@ -65,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jetpack()
     {
-        _movementSpeed = 0.5f;
         _rb.velocity = Vector3.up;
     }
 }
