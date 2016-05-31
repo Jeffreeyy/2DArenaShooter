@@ -3,23 +3,18 @@ using System.Collections;
 
 public class JetpackFuel : MonoBehaviour 
 {
-    private float _drainRate = .1f;
-    private float _drainAmount = 10;
-    private float _rechargeRate = .1f;
-    private float _rechargeAmount = .2f;
-    private float _maxFuel;
-    private float _fuel = 100;
+    private float _fuel = 200;
     public float Fuel
     {
         get
         {
             return _fuel;
         }
-        set
-        {
-            _fuel = value;
-        }
     }
+    private float _drainRate = .1f;
+    private float _drainAmount = 1.25f;
+    private float _rechargeRate = .1f;
+    private float _rechargeAmount = 1.2f;
 
     private bool _isUsingJetpack = false;
     public bool IsUsingJetpack
@@ -33,55 +28,53 @@ public class JetpackFuel : MonoBehaviour
             _isUsingJetpack = value;
         }
     }
-
-    private PlayerJetpack _playerAbilities;
-
-    private bool _isRecharging = false;
-
-    // use this for initialization
-    void Start()
+    private bool _isDrainingFuel = false;
+    private bool _isRecharging = true;
+    public bool IsRecharging
     {
-        _playerAbilities = GetComponent<PlayerJetpack>();
-        _maxFuel = _fuel;
+        set
+        {
+            _isRecharging = value;
+        }
+    }
+    public bool IsDrainingFuel
+    {
+        get
+        {
+            return _isDrainingFuel;
+        }
+        set
+        {
+            _isDrainingFuel = value;
+        }
     }
 
-    // Update is called once per frame 
     void Update()
     {
-        RechargeFuel();
-    }
-
-    private void RechargeFuel()
-    {
-        if (!_isUsingJetpack && _fuel < _maxFuel && !_isRecharging)
+        if(_fuel > 0 && !_isDrainingFuel && _isUsingJetpack)
         {
-            StartCoroutine(RechargingFuel());
+            StartCoroutine(DrainFuel());
         }
-        else if (_isUsingJetpack)
+        else if(_fuel < 200 && !_isRecharging && !_isUsingJetpack)
         {
-            _isRecharging = false;
+            StartCoroutine(RechargeFuel());
         }
     }
 
-    public IEnumerator FuelDrain()
+    IEnumerator DrainFuel()
     {
-        while (_isUsingJetpack)
+        IsDrainingFuel = true;
+        while(_isDrainingFuel)
         {
             yield return new WaitForSeconds(_drainRate);
-
-            if (_fuel > 0)
-            {
-                _fuel -= _drainAmount;
-            }
-            else
-                _playerAbilities.DeactivateJetpack();
+            _fuel -= _drainAmount;
         }
     }
 
-    IEnumerator RechargingFuel()
+    IEnumerator RechargeFuel()
     {
         _isRecharging = true;
-        while (!_isUsingJetpack)
+        while(_isRecharging)
         {
             yield return new WaitForSeconds(_rechargeRate);
             _fuel += _rechargeAmount;

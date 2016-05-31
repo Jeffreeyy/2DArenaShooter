@@ -5,14 +5,14 @@ using System.Collections;
 public class PlayerInput : MonoBehaviour 
 {
     private PlayerMovement _movement;
-    private PlayerJetpack _playerJetpack;
     private PlayerShoot _playerShoot;
+    private JetpackFuel _jetpackFuel;
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
-        _playerJetpack = GetComponent<PlayerJetpack>();
         _playerShoot = GetComponent<PlayerShoot>();
+        _jetpackFuel = GetComponent<JetpackFuel>();
     }
 
 	void Update () 
@@ -38,17 +38,18 @@ public class PlayerInput : MonoBehaviour
             _movement.MoveRight();
         }
         //ABILITY 1
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1) && _jetpackFuel.Fuel > 0)
         {
-            _playerJetpack.ActivateJetpack();
             _movement.Jetpack();
+            _jetpackFuel.IsUsingJetpack = true;
+            _jetpackFuel.IsRecharging = false;
         }
         else
-            _playerJetpack.DeactivateJetpack();
+            _jetpackFuel.IsUsingJetpack = false;
+            _jetpackFuel.IsDrainingFuel = false;
         //ABILITY 2
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //_playerJetpack.Punch();
             if (_playerShoot.canShoot)
             {
                 StartCoroutine(_playerShoot.Shoot());

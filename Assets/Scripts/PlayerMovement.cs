@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private Rigidbody _rb;
     private PlayerCollisionChecker _colChecker;
+
     [SerializeField]private float _jumpSpeed;
     private AudioSource _jumpSound;
 
@@ -59,6 +60,6 @@ public class PlayerMovement : MonoBehaviour
     public void Jetpack()
     {
         _rb.AddForce(Vector3.up * 10, ForceMode.Acceleration);
-        Debug.Log(_rb.velocity);
     }
+    
 }
