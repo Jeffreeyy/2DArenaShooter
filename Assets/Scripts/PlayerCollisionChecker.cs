@@ -12,7 +12,7 @@ public class PlayerCollisionChecker : MonoBehaviour
             return _canJump;
         }
     }
-    private bool _canMove;
+    [SerializeField]private bool _canMove;
 
     private bool _canDisableCol = false;
 
@@ -26,6 +26,8 @@ public class PlayerCollisionChecker : MonoBehaviour
 
     void Update()
     {
+        CanMove(-1);
+        CanMove(1);
         if(_movement.Duck && _canDisableCol)
         {
             StartCoroutine(DisableGroundCollision(_collidingObject, 0.15f));
