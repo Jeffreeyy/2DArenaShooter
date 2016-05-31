@@ -5,15 +5,13 @@ using System.Collections;
 public class PlayerInput : MonoBehaviour 
 {
     private PlayerMovement _movement;
-    private PlayerAbilities _abilities;
-    private PlayerPower _playerPower;
+    private PlayerJetpack _playerJetpack;
     private PlayerShoot _playerShoot;
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
-        _abilities = GetComponent<PlayerAbilities>();
-        _playerPower = GetComponent<PlayerPower>();
+        _playerJetpack = GetComponent<PlayerJetpack>();
         _playerShoot = GetComponent<PlayerShoot>();
     }
 
@@ -40,13 +38,27 @@ public class PlayerInput : MonoBehaviour
             _movement.MoveRight();
         }
         //ABILITY 1
+<<<<<<< HEAD
         if (Input.GetKeyDown(KeyCode.Mouse0))
+=======
+        if (Input.GetKey(KeyCode.Mouse0))
         {
+            _playerJetpack.ActivateJetpack();
+            _movement.Jetpack();
+        }
+        else
+            _playerJetpack.DeactivateJetpack();
+        //ABILITY 2
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+>>>>>>> origin/master
+        {
+            //_playerJetpack.Punch();
             if (_playerShoot.canShoot)
             {
                 StartCoroutine(_playerShoot.Shoot());
             }
         }
+<<<<<<< HEAD
         //ABILITY 2
         if (Input.GetKey(KeyCode.Mouse1))
         {
@@ -61,5 +73,7 @@ public class PlayerInput : MonoBehaviour
         {
             _playerPower.IsStandingStill = false;
         }
+=======
+>>>>>>> origin/master
 	}
 }
