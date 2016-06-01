@@ -12,9 +12,9 @@ public class JetpackFuel : MonoBehaviour
         }
     }
     private float _drainRate = .1f;
-    private float _drainAmount = 1.25f;
+    [SerializeField]private float _drainAmount = 4.5f;
     private float _rechargeRate = .1f;
-    private float _rechargeAmount = 1.2f;
+    [SerializeField]private float _rechargeAmount = 3f;
 
     private bool _isUsingJetpack = false;
     public bool IsUsingJetpack
@@ -29,14 +29,6 @@ public class JetpackFuel : MonoBehaviour
         }
     }
     private bool _isDrainingFuel = false;
-    private bool _isRecharging = true;
-    public bool IsRecharging
-    {
-        set
-        {
-            _isRecharging = value;
-        }
-    }
     public bool IsDrainingFuel
     {
         get
@@ -48,6 +40,15 @@ public class JetpackFuel : MonoBehaviour
             _isDrainingFuel = value;
         }
     }
+    private bool _isRecharging = true;
+    public bool IsRecharging
+    {
+        set
+        {
+            _isRecharging = value;
+        }
+    }
+    
 
     void Update()
     {
@@ -59,6 +60,17 @@ public class JetpackFuel : MonoBehaviour
         {
             StartCoroutine(RechargeFuel());
         }
+
+        if(_fuel > 200)
+        {
+            _fuel = 200;
+        }
+        else if(_fuel < 0)
+        {
+            _fuel = 0;
+        }
+
+        Debug.Log(_fuel);
     }
 
     IEnumerator DrainFuel()
