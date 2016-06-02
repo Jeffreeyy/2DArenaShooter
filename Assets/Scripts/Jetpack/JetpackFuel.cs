@@ -11,9 +11,8 @@ public class JetpackFuel : MonoBehaviour
             return _fuel;
         }
     }
-    private float _drainRate = .1f;
+    private float _chargeAndDrainRate = .1f;
     [SerializeField]private float _drainAmount;
-    private float _rechargeRate = .1f;
     [SerializeField]private float _rechargeAmount;
 
     private bool _isUsingJetpack = false;
@@ -53,7 +52,6 @@ public class JetpackFuel : MonoBehaviour
     void Update()
     {
         DrainAndRecharge();
-        Debug.Log(_isDrainingFuel);
     }
 
     void DrainAndRecharge()
@@ -79,11 +77,10 @@ public class JetpackFuel : MonoBehaviour
 
     IEnumerator DrainFuel()
     {
-        Debug.Log("draining");
         _isDrainingFuel = true;
         while(_isDrainingFuel)
         {
-            yield return new WaitForSeconds(_drainRate);
+            yield return new WaitForSeconds(_chargeAndDrainRate);
             _fuel -= _drainAmount;
         }
     }
@@ -93,7 +90,7 @@ public class JetpackFuel : MonoBehaviour
         _isRecharging = true;
         while(_isRecharging)
         {
-            yield return new WaitForSeconds(_rechargeRate);
+            yield return new WaitForSeconds(_chargeAndDrainRate);
             _fuel += _rechargeAmount;
         }
     }

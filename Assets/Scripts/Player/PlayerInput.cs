@@ -7,12 +7,14 @@ public class PlayerInput : MonoBehaviour
     private PlayerMovement _movement;
     private PlayerShoot _playerShoot;
     private JetpackFuel _jetpackFuel;
+    private ParticleSystem[] _jets;
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
         _playerShoot = GetComponent<PlayerShoot>();
         _jetpackFuel = GetComponent<JetpackFuel>();
+        _jets = GetComponentsInChildren<ParticleSystem>();
     }
 
 	void Update () 
@@ -43,11 +45,21 @@ public class PlayerInput : MonoBehaviour
             _movement.Jetpack();
             _jetpackFuel.IsUsingJetpack = true;
             _jetpackFuel.IsRecharging = false;
+            for(int i = 0; i<_jets.Length; i++)
+            {
+                var em = _jets[i].emission;
+                em.enabled = true;
+            }
         }
         else
         {
             _jetpackFuel.IsUsingJetpack = false;
             _jetpackFuel.IsDrainingFuel = false;
+            for (int i = 0; i < _jets.Length; i++)
+            {
+                var em = _jets[i].emission;
+                em.enabled = false;
+            }
         }
         //ABILITY 2
         if (Input.GetKey(KeyCode.Mouse0))
