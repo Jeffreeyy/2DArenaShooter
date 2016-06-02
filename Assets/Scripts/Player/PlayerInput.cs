@@ -45,8 +45,10 @@ public class PlayerInput : MonoBehaviour
             _jetpackFuel.IsRecharging = false;
         }
         else
+        {
             _jetpackFuel.IsUsingJetpack = false;
             _jetpackFuel.IsDrainingFuel = false;
+        }
         //ABILITY 2
         if (Input.GetKey(KeyCode.Mouse0))
         {

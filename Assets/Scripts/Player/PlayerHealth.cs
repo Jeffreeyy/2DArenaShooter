@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     {
         _lives -= _dmg;
 
-        if (_lives == 0)
+        if (_lives <= 0)
         {
             //player dead
         }

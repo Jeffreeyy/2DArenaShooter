@@ -24,6 +24,10 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+        else if(col.gameObject.tag == "Player")
+        {
+            col.gameObject.SendMessage("TakeDamage", 1f);
+        }
     }
 
     void OnDestroy()
