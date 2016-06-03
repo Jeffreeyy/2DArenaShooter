@@ -8,7 +8,7 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField]private Sprite[] _playerSprites;
     private int _playerIndex;
     private int _maxPlayerIndex;
-    private int _minPlayerIndex = 0;
+    private int _minPlayerIndex = 1;
 	// Use this for initialization
 	void Start()
 	{
@@ -44,6 +44,9 @@ public class CharacterSelect : MonoBehaviour
             case 2:
                 _currentCharacter.sprite = _playerSprites[2];
                 break;
+            case 3:
+                _currentCharacter.sprite = _playerSprites[3];
+                break;
         }
     }
 
@@ -69,5 +72,10 @@ public class CharacterSelect : MonoBehaviour
         {
             _playerIndex = _minPlayerIndex;
         }
+    }
+
+    public void SetDefault()
+    {
+        _currentCharacter.sprite = _playerSprites[1];
     }
 }
