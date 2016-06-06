@@ -7,27 +7,32 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField]private Transform _muzzle;
     [SerializeField]private float _reloadTime;
     [SerializeField]private float _knockbackAmount;
-    public bool canShoot = true;
-    private Rigidbody _playerRigidbody;
+    private bool _canShoot = true;
+    private Rigidbody2D _playerRigidbody;
 
     void Start()
     {
-        _playerRigidbody = GetComponent<Rigidbody>();
+        _playerRigidbody = GetComponent<Rigidbody2D>();
     }
 
     public IEnumerator Shoot()
     {
-        Instantiate(_bullet, _muzzle.position, _muzzle.rotation);
-        Knockback();
-        canShoot = false;
-        yield return new WaitForSeconds(_reloadTime);
-        canShoot = true;
+        if (_canShoot)
+        {
+            Instantiate(_bullet, _muzzle.position, _muzzle.rotation);
+            Knockback();
+            _canShoot = false;
+            Debug.Log("ayy");
+            yield return new WaitForSeconds(_reloadTime);
+            Debug.Log("ayy");
+            _canShoot = true;
+        }
     }
 
     private void Knockback()
     {
         Vector3 direction = transform.position - _muzzle.position;
-        _playerRigidbody.AddForce(direction * _knockbackAmount, ForceMode.Impulse);
+        _playerRigidbody.AddForce(direction * _knockbackAmount, ForceMode2D.Impulse);
     }
 
 }

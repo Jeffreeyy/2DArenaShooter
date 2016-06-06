@@ -29,10 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetAxis("Xbox_RT_1") > 0.25f)
         {
-            if (_shoot.canShoot)
-            {
                 StartCoroutine(_shoot.Shoot());
-            }
         }
 
         if (Input.GetAxis("Xbox_LT_1") > 0.25f)
