@@ -9,25 +9,24 @@ public class Bullet : MonoBehaviour {
 	
     void Start()
     {
-        _shootSound = GetComponent<AudioSource>();
+        _shootSound = GameObject.Find("Gun").GetComponent<AudioSource>();
         _shootSound.pitch = Random.Range(.75f, 1.25f);
+        _shootSound.Play();
     }
 
 	void Update () 
     {
-        transform.Translate(Vector3.right * _projectileSpeed * Time.deltaTime);
+        transform.Translate(Vector2.right * _projectileSpeed * Time.deltaTime);
 	}
 
-    void OnCollisionEnter(Collision col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Platform" || col.gameObject.tag == "Ground" || col.gameObject.tag == "Wall")
-        {
-            Destroy(this.gameObject);
-        }
-        else if(col.gameObject.tag == "Player")
+        
+        if(col.gameObject.tag == "Player")
         {
             col.gameObject.SendMessage("TakeDamage", 1f);
         }
+        Destroy(gameObject);
     }
 
     void OnDestroy()

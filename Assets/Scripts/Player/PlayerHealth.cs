@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private int _lives = 5;
+    [SerializeField]private int _lives;
 
     void TakeDamage(int _dmg)
     {
@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (_lives <= 0)
         {
-            //player dead
+            Destroy(gameObject);
         }
     }
 }

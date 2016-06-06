@@ -1,65 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(PlayerCollisionChecker))]
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]private float _movementSpeed;
-    private bool _duck = false;
-    public bool Duck
-    {
-        get
-        {
-            return _duck;
-        }
-        set
-        {
-            _duck = value;
-        }
-    }
-    private Rigidbody _rb;
-    private PlayerCollisionChecker _colChecker;
-
-    [SerializeField]private float _jumpSpeed;
+    private float _speed = 10f;
+    private Rigidbody2D _rb2d;
+    private PlayerGroundCollisionChecker2D _cc2d;
+    private PlayerShoot _shoot;
     private AudioSource _jumpSound;
 
     void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        _colChecker = GetComponent<PlayerCollisionChecker>();
+        _shoot = GetComponent<PlayerShoot>();
+        _rb2d = GetComponent<Rigidbody2D>();
+        _cc2d = GetComponent<PlayerGroundCollisionChecker2D>();
         _jumpSound = GetComponent<AudioSource>();
     }
-
-    public void JumpUp()
+    void Update()
     {
-        if (_colChecker.CanJump)
+        float x = Input.GetAxis("Xbox_JoystickLeft_X_1");
+        _rb2d.velocity = new Vector2(x * _speed, _rb2d.velocity.y);
+        if (Input.GetButtonDown("Xbox_LB_1") && _cc2d.CanJump)
         {
-            _rb.velocity = new Vector3(0, _jumpSpeed, 0);
+            _rb2d.velocity = new Vector2(0, 25f);
             _jumpSound.pitch = Random.Range(.75f, 1.25f);
             _jumpSound.Play();
         }
-    }
 
-    public void MoveLeft()
-    {
-        if (_colChecker.CanMove(-1))
+        if (Input.GetAxis("Xbox_RT_1") > 0.25f)
         {
-            _rb.MovePosition(_rb.position + (Vector3.left * _movementSpeed * Time.deltaTime));
+            if (_shoot.canShoot)
+            {
+                StartCoroutine(_shoot.Shoot());
+            }
+        }
+
+        if (Input.GetAxis("Xbox_LT_1") > 0.25f)
+        {
+            //_movement.Jetpack();
+            Debug.Log("PRESSING LEFT TRIGGER");
+            _rb2d.AddForce(Vector2.up * Input.GetAxis("Xbox_LT_1") * 100, ForceMode2D.Force);
         }
     }
-
-    public void MoveRight()
-    {
-        if (_colChecker.CanMove(1))
-        {
-            _rb.MovePosition(_rb.position + (Vector3.right * _movementSpeed * Time.deltaTime));
-        }
-    }
-
-    public void Jetpack()
-    {
-        _rb.AddForce(Vector3.up * 10, ForceMode.Acceleration);
-    }
-    
 }

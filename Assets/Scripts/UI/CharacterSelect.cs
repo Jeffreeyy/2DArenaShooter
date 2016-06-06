@@ -1,81 +1,41 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.UI;
 
-public class CharacterSelect : MonoBehaviour
+public class CharacterSelect : MonoBehaviour 
 {
-    private Image _currentCharacter;
-    [SerializeField]private Sprite[] _playerSprites;
-    private int _playerIndex;
-    private int _maxPlayerIndex;
-    private int _minPlayerIndex = 1;
-	// Use this for initialization
-	void Start()
-	{
-        _currentCharacter = GetComponent<Image>();
-        _maxPlayerIndex = _playerSprites.Length - 1;
-	}
-	
-	// Update() is called once per frame
-	void Update()
-	{
-        WhichPlayerImage();
+    private bool _player1Active;
+    private bool _player2Active;
+    private bool _player3Active;
+    private bool _player4Active;
 
-		if(Input.GetKeyDown(KeyCode.Q))
-        {
-            PreviousCharacterImage();
-        }
-        else if(Input.GetKeyDown(KeyCode.E))
-        {
-            NextCharacterImage();
-        }
+    [SerializeField]private Button[] _player1Weapons;
+    [SerializeField]private Button[] _player2Weapons;
+    [SerializeField]private Button[] _player3Weapons;
+    [SerializeField]private Button[] _player4Weapons;
+
+	void Update () 
+    {
+        WaitForInput();
 	}
 
-    void WhichPlayerImage()
+    void WaitForInput()
     {
-        switch (_playerIndex)
+        if (Input.GetButtonDown("Xbox_Button_A_1"))
         {
-            case 0:
-                _currentCharacter.sprite = _playerSprites[0];
-                break;
-            case 1:
-                _currentCharacter.sprite = _playerSprites[1];
-                break;
-            case 2:
-                _currentCharacter.sprite = _playerSprites[2];
-                break;
-            case 3:
-                _currentCharacter.sprite = _playerSprites[3];
-                break;
+            _player1Active = true;
         }
-    }
-
-    public void PreviousCharacterImage()
-    {
-        if (_playerIndex > _minPlayerIndex)
+        if (Input.GetButtonDown("Xbox_Button_A_2"))
         {
-            _playerIndex--;
+            _player2Active = true;
         }
-        else
+        if (Input.GetButtonDown("Xbox_Button_A_3"))
         {
-            _playerIndex = _maxPlayerIndex;
+            _player3Active = true;
         }
-    }
-
-    public void NextCharacterImage()
-    {
-        if (_playerIndex < _maxPlayerIndex)
+        if (Input.GetButtonDown("Xbox_Button_A_4"))
         {
-            _playerIndex++;
+            _player4Active = true;
         }
-        else
-        {
-            _playerIndex = _minPlayerIndex;
-        }
-    }
-
-    public void SetDefault()
-    {
-        _currentCharacter.sprite = _playerSprites[1];
     }
 }
