@@ -2,16 +2,18 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
-
-    [SerializeField]private float _projectileSpeed;
-    private AudioSource _shootSound;
     [SerializeField]private GameObject _deathParticles;
-	
-    void Start()
+    [SerializeField]private float _projectileSpeed;
+    private Vector2 _beginPos;
+    
+    void OnEnable()
     {
-        _shootSound = GameObject.Find("Gun").GetComponent<AudioSource>();
-        _shootSound.pitch = Random.Range(.75f, 1.25f);
-        _shootSound.Play();
+        
+    }
+
+    public void SavePos()
+    {
+        _beginPos = this.transform.position;
     }
 
 	void Update () 
@@ -26,12 +28,13 @@ public class Bullet : MonoBehaviour {
         {
             col.gameObject.SendMessage("TakeDamage", 1f);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        ObjectPool.instance.PoolObject(this.gameObject);
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         //PlayParticles();
-        Instantiate(_deathParticles, transform.position, Quaternion.identity);
+        //Instantiate(_deathParticles, transform.position, Quaternion.identity);
     }
 }

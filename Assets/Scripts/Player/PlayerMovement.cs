@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             _jumpSound.Play();
         }
 
-        if (Input.GetAxis("Xbox_RT_1") > 0.25f)
+        if (Input.GetAxis("Xbox_RT_1") > 0.25f || Input.GetKey(KeyCode.Mouse0))
         {
                 StartCoroutine(_shoot.Shoot());
         }

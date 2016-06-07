@@ -5,6 +5,15 @@ public class PlayerShoot : MonoBehaviour {
 
     [SerializeField]private GameObject _bullet;
     [SerializeField]private Transform _muzzle;
+    private AudioSource _shootSound;
+
+    public Transform Muzzle
+    {
+        get
+        {
+            return _muzzle;
+        }
+    }
     [SerializeField]private float _reloadTime;
     [SerializeField]private float _knockbackAmount;
     private bool _canShoot = true;
@@ -13,13 +22,21 @@ public class PlayerShoot : MonoBehaviour {
     void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
+        _shootSound = GameObject.Find("Gun").GetComponent<AudioSource>();
     }
 
     public IEnumerator Shoot()
     {
         if (_canShoot)
         {
-            Instantiate(_bullet, _muzzle.position, _muzzle.rotation);
+            //Instantiate(_bullet, _muzzle.position, _muzzle.rotation);
+            GameObject bullet = ObjectPool.instance.GetObjectForType(_bullet.name, true);
+            bullet.transform.position = _muzzle.position;
+            bullet.transform.rotation = _muzzle.rotation;
+
+            _shootSound.pitch = Random.Range(.75f, 1.25f);
+            _shootSound.Play();
+
             Knockback();
             _canShoot = false;
             Debug.Log("ayy");
