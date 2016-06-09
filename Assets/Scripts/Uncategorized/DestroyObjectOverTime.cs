@@ -3,11 +3,17 @@ using System.Collections;
 
 public class DestroyObjectOverTime : MonoBehaviour {
 
-    [SerializeField]private float _destoryTime;
+    [SerializeField]private float _destroyTime;
 
-	void Start () 
+	void OnEnable () 
     {
         //Destroy(this.gameObject, _destoryTime);
-        ObjectPool.instance.PoolObject(this.gameObject);
+        StartCoroutine(DestroyObject());
 	}
+
+    IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(_destroyTime);
+        ObjectPool.instance.PoolObject(this.gameObject);
+    }
 }
