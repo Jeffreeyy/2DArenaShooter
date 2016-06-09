@@ -16,7 +16,7 @@ public class CharacterSelectInput : MonoBehaviour {
 
     void Start()
     {
-        NextWeapon();
+        //NextWeapon();
     }
 
 	void Update () 
