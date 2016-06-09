@@ -1,27 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shotgun : MonoBehaviour
+public class Shotgun : MonoBehaviour, IWeapon
 {
-    private Transform[] _muzzles;
-    [SerializeField]private Transform _bullet;
-	// Use this for initialization
-	void Start()
-	{
-        _muzzles = GetComponentsInChildren<Transform>();
-	}
-	
-	// Update() is called once per frame
-	void Update()
-	{
-		
+    [SerializeField]private Transform[] _muzzles;
+    [SerializeField]private GameObject _pellet;
+    private string _weaponName = "Shotgun";
+    public string WeaponName
+    {
+        get
+        {
+            return _weaponName;
+        }
     }
 
-    void Shoot()
+    public void Shoot()
     {
         for (int i = 0; i < _muzzles.Length; i++)
         {
-            GameObject bullet = ObjectPool.instance.GetObjectForType(_bullet.name, true);
+            GameObject bullet = ObjectPool.instance.GetObjectForType(_pellet.name, true);
             bullet.transform.position = _muzzles[i].transform.position;
             bullet.transform.rotation = _muzzles[i].transform.rotation;
         }
