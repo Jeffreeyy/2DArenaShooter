@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerShoot _shoot;
     private AudioSource _jumpSound;
 
+    private int ControllerID { get; set; }
+
     void Awake()
     {
         _shoot = GetComponent<PlayerShoot>();
