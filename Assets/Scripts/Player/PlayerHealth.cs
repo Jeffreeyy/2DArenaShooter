@@ -3,15 +3,23 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField]private int _lives;
+    [SerializeField]private int _health;
+
+    public delegate void PlayerLivesDelegate();
+    public static event PlayerLivesDelegate Lives;
 
     void TakeDamage(int _dmg)
     {
-        _lives -= _dmg;
+        _health -= _dmg;
 
-        if (_lives <= 0)
+        if (_health <= 0)
         {
-            Destroy(gameObject);
+            if (Lives != null)
+            {
+                Lives();
+                _health = 60;
+            }
         }
     }
+
 }
