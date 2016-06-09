@@ -15,10 +15,36 @@ public class PlayerWeapon : MonoBehaviour
             _currentWeapon = value;
         }
     }
+
+    private int _currentWeaponIndex;
     private IWeapon[] _weapons;
 	// Use this for initialization
 	void Start()
 	{
         _weapons = GetComponents<IWeapon>();
 	}
+
+    void Update()
+    {
+        CheckWhichWeapon();
+    }
+
+    void CheckWhichWeapon()
+    {
+        switch (_currentWeaponIndex)
+        {
+            case 0:
+                _currentWeapon = _weapons[0];
+                //shotgun
+                break;
+            case 1:
+                _currentWeapon = _weapons[1];
+                //machinegun
+                break;
+            case 3:
+                _currentWeapon = _weapons[2];
+                //rocketlauncher
+                break;
+        }
+    }
 }
