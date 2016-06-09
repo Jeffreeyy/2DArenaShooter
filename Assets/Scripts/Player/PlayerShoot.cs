@@ -39,9 +39,7 @@ public class PlayerShoot : MonoBehaviour {
 
             Knockback();
             _canShoot = false;
-            Debug.Log("ayy");
             yield return new WaitForSeconds(_reloadTime);
-            Debug.Log("ayy");
             _canShoot = true;
         }
     }

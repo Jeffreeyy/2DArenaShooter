@@ -4,16 +4,10 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
     [SerializeField]private GameObject _deathParticles;
     [SerializeField]private float _projectileSpeed;
-    private Vector2 _beginPos;
     
     void OnEnable()
     {
         
-    }
-
-    public void SavePos()
-    {
-        _beginPos = this.transform.position;
     }
 
 	void Update () 
