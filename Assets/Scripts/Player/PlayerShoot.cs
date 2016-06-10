@@ -14,7 +14,7 @@ public class PlayerShoot : MonoBehaviour {
             return _muzzle;
         }
     }*/
-    [SerializeField]private Transform _gun;
+    [SerializeField]private GameObject _gun;
 
     [SerializeField]private float _reloadTime;
     [SerializeField]private float _knockbackAmount;
@@ -54,7 +54,7 @@ public class PlayerShoot : MonoBehaviour {
 
     private void Knockback()
     {
-        Vector3 direction = transform.position - _gun.position;
+        Vector3 direction = transform.position - _gun.transform.position;
         _playerRigidbody.AddForce(direction * _knockbackAmount, ForceMode2D.Impulse);
     }
 

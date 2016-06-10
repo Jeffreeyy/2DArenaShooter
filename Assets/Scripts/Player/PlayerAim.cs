@@ -3,10 +3,16 @@ using System.Collections;
 
 public class PlayerAim : MonoBehaviour 
 {
+    private int _playerID;
+    public int PlayerID
+    {
+        set { _playerID = value; }
+    }
+
 	void Update () 
     {
-        float rX = Input.GetAxisRaw("Xbox_JoystickRight_4th_1");
-        float rY = Input.GetAxisRaw("Xbox_JoystickRight_5th_1");
+        float rX = Input.GetAxisRaw("Xbox_JoystickRight_4th_" + _playerID);
+        float rY = Input.GetAxisRaw("Xbox_JoystickRight_5th_" + _playerID);
 
         if (rX != 0.0f || rY != 0.0f)
         {

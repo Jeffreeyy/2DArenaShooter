@@ -19,8 +19,8 @@ public class Shotgun : MonoBehaviour, IWeapon
         for (int i = 0; i < _muzzles.Length; i++)
         {
             GameObject bullet = ObjectPool.instance.GetObjectForType(_pellet.name, true);
-            bullet.transform.position = _muzzles[i].transform.position;
-            bullet.transform.rotation = _muzzles[i].transform.rotation;
+            bullet.transform.position = _muzzles[i].position;
+            bullet.transform.rotation = _muzzles[i].rotation;
         }
     }
 }

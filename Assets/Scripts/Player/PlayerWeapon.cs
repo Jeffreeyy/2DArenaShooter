@@ -6,17 +6,14 @@ public class PlayerWeapon : MonoBehaviour
     private IWeapon _currentWeapon;
     public IWeapon CurrentWeapon
     {
-        get
-        {
-            return _currentWeapon;
-        }
-        set
-        {
-            _currentWeapon = value;
-        }
+        get { return _currentWeapon; }
     }
 
     private int _currentWeaponIndex;
+    public int WeaponIndex
+    {
+        set { _currentWeaponIndex = value; }
+    }
     private IWeapon[] _weapons;
 	// Use this for initialization
 	void Start()

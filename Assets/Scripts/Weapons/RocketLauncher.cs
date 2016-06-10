@@ -17,7 +17,7 @@ public class RocketLauncher : MonoBehaviour, IWeapon
     public void Shoot()
     {
         GameObject bullet = ObjectPool.instance.GetObjectForType(_rocket.name, true);
-        bullet.transform.position = _muzzle.transform.position;
-        bullet.transform.rotation = _muzzle.transform.rotation;
+        bullet.transform.position = _muzzle.position;
+        bullet.transform.rotation = _muzzle.rotation;
     }
 }
