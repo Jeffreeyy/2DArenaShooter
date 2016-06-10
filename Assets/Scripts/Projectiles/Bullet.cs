@@ -4,11 +4,6 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
     [SerializeField]private GameObject _deathParticles;
     [SerializeField]private float _projectileSpeed;
-    
-    void OnEnable()
-    {
-        
-    }
 
 	void Update () 
     {
@@ -22,7 +17,6 @@ public class Bullet : MonoBehaviour {
         {
             col.gameObject.SendMessage("TakeDamage", 1f);
         }
-        //Destroy(gameObject);
         ObjectPool.instance.PoolObject(this.gameObject);
     }
 

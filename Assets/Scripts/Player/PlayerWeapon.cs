@@ -19,7 +19,10 @@ public class PlayerWeapon : MonoBehaviour
 	void Start()
 	{
         _weapons = GetComponents<IWeapon>();
-	}
+#if(UNITY_EDITOR)
+        _currentWeaponIndex = 2;
+#endif
+    }
 
     void Update()
     {
@@ -38,7 +41,7 @@ public class PlayerWeapon : MonoBehaviour
                 _currentWeapon = _weapons[1];
                 //machinegun
                 break;
-            case 3:
+            case 2:
                 _currentWeapon = _weapons[2];
                 //rocketlauncher
                 break;
