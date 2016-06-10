@@ -36,10 +36,6 @@ public class PlayerShoot : MonoBehaviour {
     {
         if (_canShoot)
         {
-            //Instantiate(_bullet, _muzzle.position, _muzzle.rotation);
-            /*GameObject bullet = ObjectPool.instance.GetObjectForType(_bullet.name, true);
-            bullet.transform.position = _muzzle.position;
-            bullet.transform.rotation = _muzzle.rotation;*/
             _playerWeapon.CurrentWeapon.Shoot();
 
             _shootSound.pitch = Random.Range(.75f, 1.25f);
