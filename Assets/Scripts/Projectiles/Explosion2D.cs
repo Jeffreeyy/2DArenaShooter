@@ -46,7 +46,7 @@ public class Explosion2D : MonoBehaviour
         }
 	}
 
-    void OntriggerEnterEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         _targetRigidBody2D = col.gameObject.GetComponent<Rigidbody2D>();
         if(_isExploded)

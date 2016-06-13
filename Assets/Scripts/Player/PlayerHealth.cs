@@ -4,6 +4,13 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
     private int _health = 60;
+    public int PHealth
+    {
+        get
+        {
+            return _health;
+        }
+    }
 
     public delegate void PlayerLivesDelegate();
     public static event PlayerLivesDelegate Lives;
