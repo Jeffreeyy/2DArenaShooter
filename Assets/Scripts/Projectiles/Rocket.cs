@@ -5,11 +5,11 @@ public class Rocket : MonoBehaviour
 {
     [SerializeField]private GameObject _rocketDeathParticles;
     [SerializeField]private float _projectileSpeed;
-    //private ExplosionForce2D _explosionForce2D;
+    private ProjectileDamage _projectileDamage;
 
-    void OnEnable()
+    void Start()
     {
-        //_explosionForce2D = GameObject.FindWithTag("Player").GetComponent<ExplosionForce2D>();
+        _projectileDamage = GetComponent<ProjectileDamage>();
     }
     
     void Update()
@@ -17,13 +17,18 @@ public class Rocket : MonoBehaviour
         transform.Translate(Vector2.right * _projectileSpeed * Time.deltaTime);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.SendMessage("TakeDamage", 1f);
+            col.gameObject.SendMessage("TakeDamage", _projectileDamage.Damage);
+            DestroyRocket();
         }
-        DestroyRocket(); 
+        else if(col.gameObject.tag != "Bullet")
+        {
+            DestroyRocket();
+        }
+       
     }
 
     void DestroyRocket()
@@ -31,9 +36,6 @@ public class Rocket : MonoBehaviour
         GameObject deathParticles = ObjectPool.instance.GetObjectForType(_rocketDeathParticles.name, true);
         deathParticles.transform.position = transform.position;
         deathParticles.transform.rotation = transform.rotation;
-        //Vector3 pos = new Vector3(transform.position.x, transform.position.y, 10);
-        //Vector3 explosionPos = Camera.main.ScreenToWorldPoint(pos);
-        //_explosionForce2D.AddExplosionForce(GetComponent<Rigidbody2D>(), _explosionForce2D.Power * 100, explosionPos, _explosionForce2D.Radius);
         ObjectPool.instance.PoolObject(this.gameObject);
     }
 }

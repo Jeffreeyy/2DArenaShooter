@@ -3,6 +3,11 @@ using System.Collections;
 
 public class ProjectileDamage : MonoBehaviour{
 
-    public int _damage;
+    [SerializeField]private float _damage;
+    public float Damage
+    {
+        get { return _damage; }
+    }
+
 
 }

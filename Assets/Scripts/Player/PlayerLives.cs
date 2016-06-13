@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerLives : MonoBehaviour {
 
-    private int _lives = 5;
+    [SerializeField]private int _lives = 5;
 
     void OnEnable()
     {

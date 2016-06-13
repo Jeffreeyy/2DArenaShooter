@@ -3,20 +3,20 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private int _health = 60;
+    [SerializeField]private float _health = 60;
 
     public delegate void PlayerLivesDelegate();
     public static event PlayerLivesDelegate Lives;
 
-    void OnTriggerEnter2D(Collider2D coll)
+    /*void OnCollisonEnter2D(Collision2D coll)
     {
-        if(coll.tag == "Bullet")
+        if(coll.gameObject.tag == "Bullet")
         {
-            TakeDamage(coll.GetComponent<ProjectileDamage>()._damage);
+            TakeDamage(coll.gameObject.GetComponent<ProjectileDamage>()._damage);
         }
-    }
+    }*/
 
-    void TakeDamage(int _dmg)
+    void TakeDamage(float _dmg)
     {
         _health -= _dmg;
 
