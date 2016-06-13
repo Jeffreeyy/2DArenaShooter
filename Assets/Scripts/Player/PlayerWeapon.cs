@@ -19,9 +19,6 @@ public class PlayerWeapon : MonoBehaviour
 	void Start()
 	{
         _weapons = GetComponents<IWeapon>();
-#if(UNITY_EDITOR)
-        _currentWeaponIndex = 2;
-#endif
     }
 
     void Update()
