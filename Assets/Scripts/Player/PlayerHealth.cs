@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
+<<<<<<< HEAD
     private int _health = 60;
     public int PHealth
     {
@@ -11,19 +12,22 @@ public class PlayerHealth : MonoBehaviour
             return _health;
         }
     }
+=======
+    [SerializeField]private float _health = 60;
+>>>>>>> origin/master
 
     public delegate void PlayerLivesDelegate();
     public static event PlayerLivesDelegate Lives;
 
-    void OnTriggerEnter2D(Collider2D coll)
+    /*void OnCollisonEnter2D(Collision2D coll)
     {
-        if(coll.tag == "Bullet")
+        if(coll.gameObject.tag == "Bullet")
         {
-            TakeDamage(coll.GetComponent<ProjectileDamage>()._damage);
+            TakeDamage(coll.gameObject.GetComponent<ProjectileDamage>()._damage);
         }
-    }
+    }*/
 
-    void TakeDamage(int _dmg)
+    void TakeDamage(float _dmg)
     {
         _health -= _dmg;
 
