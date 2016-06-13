@@ -5,7 +5,7 @@ public class Machinegun : MonoBehaviour, IWeapon
 {
     [SerializeField]private Transform _muzzle;
     [SerializeField]private GameObject _bullet;
-    private string _weaponName = "MachineGun";
+    private string _weaponName = "Machinegun";
     public string WeaponName
     {
         get

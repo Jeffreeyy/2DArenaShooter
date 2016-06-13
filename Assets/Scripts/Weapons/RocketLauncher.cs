@@ -5,7 +5,7 @@ public class RocketLauncher : MonoBehaviour, IWeapon
 {
     [SerializeField]private Transform _muzzle;
     [SerializeField]private GameObject _rocket;
-    private string _weaponName = "RocketLauncher";
+    private string _weaponName = "Rocket Launcher";
     public string WeaponName
     {
         get
