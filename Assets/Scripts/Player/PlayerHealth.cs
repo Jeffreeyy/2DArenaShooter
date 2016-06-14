@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField]private float _health = 60;
+    [SerializeField]private float _health = 100;
     public float PHealth
     {
         get
@@ -11,10 +11,12 @@ public class PlayerHealth : MonoBehaviour
             return _health;
         }
     }
-    
+    private PlayerLives _playerLives;
 
-    public delegate void PlayerLivesDelegate();
-    public static event PlayerLivesDelegate Lives;
+    void Start()
+    {
+        _playerLives = GetComponent<PlayerLives>();
+    }
 
     /*void OnCollisonEnter2D(Collision2D coll)
     {
@@ -30,11 +32,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (_health <= 0)
         {
-            if (Lives != null)
-            {
-                Lives();
-                _health = 60;
-            }
+            _playerLives.RemoveLives();
+           _health = 100;
         }
     }
 

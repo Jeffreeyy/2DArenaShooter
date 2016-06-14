@@ -5,12 +5,7 @@ public class PlayerLives : MonoBehaviour {
 
     [SerializeField]private int _lives = 5;
 
-    void OnEnable()
-    {
-        PlayerHealth.Lives += RemoveLives;
-    }
-
-    void RemoveLives()
+    public void RemoveLives()
     {
         if (_lives > 0)
         {
