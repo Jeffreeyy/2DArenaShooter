@@ -3,18 +3,15 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-<<<<<<< HEAD
-    private int _health = 60;
-    public int PHealth
+    [SerializeField]private float _health = 60;
+    public float PHealth
     {
         get
         {
             return _health;
         }
     }
-=======
-    [SerializeField]private float _health = 60;
->>>>>>> origin/master
+    
 
     public delegate void PlayerLivesDelegate();
     public static event PlayerLivesDelegate Lives;

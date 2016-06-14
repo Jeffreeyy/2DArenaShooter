@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour 
+public class JetpackFuel : MonoBehaviour 
 {
     private float _fuel = 200;
-    public float Health
+    public float Fuel
     {
         get
         {

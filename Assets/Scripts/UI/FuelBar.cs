@@ -6,17 +6,17 @@ public class FuelBar : MonoBehaviour
 {
     [SerializeField]private Image _fuelBar;
     private float _fuelOffset;
-    private PlayerHealth _jetPackFuel;
+    private JetpackFuel _jetPackFuel;
     // use this for initialization
     void Start()
     {
-        _jetPackFuel = GetComponent<PlayerHealth>();
-        _fuelOffset = _jetPackFuel.Health;
+        _jetPackFuel = GetComponent<JetpackFuel>();
+        _fuelOffset = _jetPackFuel.Fuel;
     }
 
     // Update is called once per frame 
     void Update()
     {
-        _fuelBar.fillAmount = _jetPackFuel.Health / _fuelOffset;
+        _fuelBar.fillAmount = _jetPackFuel.Fuel / _fuelOffset;
     }
 }
