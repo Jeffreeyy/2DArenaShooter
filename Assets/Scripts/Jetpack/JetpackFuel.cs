@@ -3,7 +3,7 @@ using System.Collections;
 
 public class JetpackFuel : MonoBehaviour 
 {
-    private float _fuel = 200;
+    [SerializeField]private float _fuel = 200;
     public float Fuel
     {
         get

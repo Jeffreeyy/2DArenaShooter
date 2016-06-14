@@ -8,7 +8,6 @@ public class Explosion2D : MonoBehaviour
     [SerializeField]private float _maxExplosionSize = 10;
     [SerializeField]private float _explosionModifier = 10;
     [SerializeField]private float _currentRadius = 0;
-    private float _oldExplosionRadius;
 
     private Rigidbody2D _targetRigidBody2D;
     private CircleCollider2D _explosionRadius;
@@ -18,7 +17,6 @@ public class Explosion2D : MonoBehaviour
 	void Start()
 	{
         _explosionRadius = GetComponent<CircleCollider2D>();
-        _oldExplosionRadius = _explosionRadius.radius;
 	}
 
     void OnEnable()

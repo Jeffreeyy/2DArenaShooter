@@ -17,6 +17,10 @@ public class PlayerLives : MonoBehaviour {
             _lives -= 1;
         }
         else
+        {
             Debug.Log("delete player from the game");
+            Destroy(this.gameObject);
+        }
+            
     }
 }
