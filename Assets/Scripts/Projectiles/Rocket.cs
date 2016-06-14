@@ -24,7 +24,7 @@ public class Rocket : MonoBehaviour
             col.gameObject.SendMessage("TakeDamage", _projectileDamage.Damage);
             DestroyRocket();
         }
-        else if(col.gameObject.tag != "Bullet")
+        else if(col.gameObject.tag != "Bullet" || col.gameObject.tag != "Explosion")
         {
             DestroyRocket();
         }

@@ -60,9 +60,4 @@ public class Explosion2D : MonoBehaviour
             }
         }
     }
-
-    void OnDisable()
-    {
-        _explosionRadius.radius = _oldExplosionRadius;
-    }
 }
