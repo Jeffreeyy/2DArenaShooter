@@ -42,11 +42,11 @@ public class CharacterSelect : MonoBehaviour
         if(_activePlayers == 1)
         {
             _readyText.enabled = true;
-            _readyText.text = "Need atleast 2 players to start!";
+            _readyText.text = "NEED ATLEAST 2 PLAYERS TO START!";
         }
         else if(_activePlayers >= 2)
         {
-            _readyText.text = "Press 'Start' to ready up!";
+            _readyText.text = "PRESS START TO READY UP!";
         }
 
         if(_readyPlayers >= 2 && _readyPlayers == _activePlayers)

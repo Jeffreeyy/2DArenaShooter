@@ -10,7 +10,7 @@ public class CharacterSelectInput : MonoBehaviour {
     [SerializeField]private bool _playerReady;
     public bool PlayerReady { get { return _playerReady; } }
     [SerializeField]private int _currentWeaponIndex;
-    [SerializeField]private string[] _weapons;
+    [SerializeField]private Sprite[] _weapons;
 
     private PlayerData _playerData;
 
@@ -19,13 +19,13 @@ public class CharacterSelectInput : MonoBehaviour {
 
     [SerializeField]private GameObject _beginPanel;
     [SerializeField]private Image _readyImage;
-    private Text _currentWeaponText;
+    private Image _currentWeaponImage;
 
     void Start()
     {
         _playerData = GameObject.Find("DataObject").GetComponent<PlayerData>();
         _characterSelect = GameObject.Find("CharacterSelectManager").GetComponent<CharacterSelect>();
-        _currentWeaponText = GameObject.Find("CurrentWeaponText" + _playerID).GetComponent<Text>();
+        _currentWeaponImage = GameObject.Find("CurrentWeaponImage" + _playerID).GetComponent<Image>();
         _readyImage.enabled = false;
         SetWeaponText();
 
@@ -87,6 +87,6 @@ public class CharacterSelectInput : MonoBehaviour {
 
     void SetWeaponText()
     {
-        _currentWeaponText.text = _weapons[_currentWeaponIndex];
+        _currentWeaponImage.sprite = _weapons[_currentWeaponIndex];
     }
 }
