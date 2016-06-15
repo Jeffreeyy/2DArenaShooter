@@ -5,11 +5,10 @@ public class Rocket : MonoBehaviour
 {
     [SerializeField]private GameObject _rocketDeathParticles;
     [SerializeField]private float _projectileSpeed;
-    private ProjectileDamage _projectileDamage;
+
 
     void Start()
     {
-        _projectileDamage = GetComponent<ProjectileDamage>();
     }
     
     void Update()
@@ -21,7 +20,7 @@ public class Rocket : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.SendMessage("TakeDamage", _projectileDamage.Damage);
+            //col.gameObject.SendMessage("TakeDamage", _projectileDamage.Damage);
             DestroyRocket();
         }
         else if(col.gameObject.tag != "Bullet" || col.gameObject.tag != "Explosion")
