@@ -4,11 +4,13 @@ using System.Collections;
 public class Rocket : MonoBehaviour
 {
     [SerializeField]private GameObject _rocketDeathParticles;
+    [SerializeField]private GameObject _explosion;
     [SerializeField]private float _projectileSpeed;
 
 
     void Start()
     {
+
     }
     
     void Update()
@@ -35,6 +37,11 @@ public class Rocket : MonoBehaviour
         GameObject deathParticles = ObjectPool.instance.GetObjectForType(_rocketDeathParticles.name, true);
         deathParticles.transform.position = transform.position;
         deathParticles.transform.rotation = transform.rotation;
+        ObjectPool.instance.PoolObject(this.gameObject);
+
+        GameObject explosion = ObjectPool.instance.GetObjectForType(_explosion.name, true);
+        explosion.transform.position = transform.position;
+        explosion.transform.rotation = transform.rotation;
         ObjectPool.instance.PoolObject(this.gameObject);
     }
 }
