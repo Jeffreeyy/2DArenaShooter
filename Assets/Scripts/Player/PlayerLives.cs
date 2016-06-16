@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerLives : MonoBehaviour {
 
-    private ParticleSystem _particles;
+    [SerializeField]private GameObject _respawnManager;
+    private PlayerRespawn _playerRespawn;
     private LifeImage lifeImage;
     [SerializeField]private int _lives = 5;
     private Vector3 _spawnPosition;
@@ -15,8 +16,10 @@ public class PlayerLives : MonoBehaviour {
 
     void Awake()
     {
-        _particles = GetComponentInChildren<ParticleSystem>();
+        GameObject parentObject = Instantiate(_respawnManager, transform.position, transform.rotation) as GameObject;
+        transform.parent = parentObject.transform;
         lifeImage = GetComponent<LifeImage>();
+        _playerRespawn = parentObject.gameObject.GetComponent<PlayerRespawn>();
     }
 
     public void RemoveLives()
@@ -24,19 +27,12 @@ public class PlayerLives : MonoBehaviour {
         if (_lives > 0)
         {
             lifeImage.CutLives();
-            StartCoroutine(Respawn());
+            _playerRespawn.IsDead = true;
             _lives -= 1;
         }
         else
         {
             Destroy(this.gameObject);
         }    
-    }
-
-    IEnumerator Respawn()
-    {
-        _particles.Play();
-        yield return new WaitForSeconds(0.3f);
-        transform.position = _spawnPosition;
     }
 }
