@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    private ParticleSystem _particles;
+    [SerializeField]private float _respawnTime = 3;
     private GameObject _player;
     private PlayerLives _playerLives;
     private bool _isDead = false;
@@ -15,7 +15,6 @@ public class PlayerRespawn : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-        _particles = GetComponentInChildren<ParticleSystem>();
         _player = transform.GetChild(0).gameObject;
         _playerLives = _player.GetComponent<PlayerLives>();
 	}
@@ -31,12 +30,11 @@ public class PlayerRespawn : MonoBehaviour
     IEnumerator Respawn()
     {
         _isDead = false;
-        Debug.Log("Setinactive");
         _player.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        Debug.Log("setactive");
+        yield return new WaitForSeconds(_respawnTime);
         _player.SetActive(true);
-        _particles.Play();
         _player.transform.position = _playerLives.SpawnPosition;
+        GameObject spawnParticles = ObjectPool.instance.GetObjectForType("SpawnParticles", true);
+        spawnParticles.transform.position = _player.transform.position;
     }
 }

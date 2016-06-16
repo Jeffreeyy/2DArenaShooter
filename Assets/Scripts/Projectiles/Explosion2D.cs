@@ -3,18 +3,11 @@ using System.Collections;
 
 public class Explosion2D : MonoBehaviour
 {
-    private ProjectileDamage _projectileDamage;
-
-    [SerializeField]
-    private float _explosionDelay = .01f;
-    [SerializeField]
-    private float _explosionRate = 1;
-    [SerializeField]
-    private float _maxExplosionSize = 10;
-    [SerializeField]
-    private float _explosionModifier = 10;
-    [SerializeField]
-    private float _currentRadius = 0;
+    [SerializeField]private float _explosionDelay = .01f;
+    [SerializeField]private float _explosionRate = 1;
+    [SerializeField]private float _maxExplosionSize = 10;
+    [SerializeField]private float _explosionModifier = 10;
+    [SerializeField]private float _currentRadius = 0;
     [SerializeField]private float _directHit = 30;
 
     private Rigidbody2D _targetRigidBody2D;
@@ -25,7 +18,6 @@ public class Explosion2D : MonoBehaviour
     void Start()
     {
         _explosionRadius = GetComponent<CircleCollider2D>();
-        _projectileDamage = GetComponent<ProjectileDamage>();
     }
 
     void OnEnable()

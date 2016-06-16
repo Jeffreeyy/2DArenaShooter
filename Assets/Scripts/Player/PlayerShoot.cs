@@ -25,6 +25,11 @@ public class PlayerShoot : MonoBehaviour {
     private AudioSource _shootSound;
     private PlayerWeapon _playerWeapon;
 
+    void OnEnable()
+    {
+        _canShoot = true;
+    }
+
     void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();

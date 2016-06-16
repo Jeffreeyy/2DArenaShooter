@@ -32,6 +32,7 @@ public class PlayerLives : MonoBehaviour {
         }
         else
         {
+            _lives -= 1;
             Destroy(this.gameObject);
         }    
     }
