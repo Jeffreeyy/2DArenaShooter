@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -52,7 +53,7 @@ public class CharacterSelect : MonoBehaviour
         if(_readyPlayers >= 2 && _readyPlayers == _activePlayers)
         {
             _playerData.PlayerAmount = _readyPlayers;
-            Application.LoadLevel(1);
+            SceneManager.LoadScene(SceneNames.MAINSCENE);
         }
     }
 }
