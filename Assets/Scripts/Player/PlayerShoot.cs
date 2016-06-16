@@ -1,19 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerShoot : MonoBehaviour {
-
-    //[SerializeField]private GameObject _bullet;
-    //[SerializeField]private Transform _muzzle;
-    
-
-    /*public Transform Muzzle
-    {
-        get
-        {
-            return _muzzle;
-        }
-    }*/
+public class PlayerShoot : MonoBehaviour 
+{
     [SerializeField]private GameObject _gun;
 
     [SerializeField]private float _reloadTime;
