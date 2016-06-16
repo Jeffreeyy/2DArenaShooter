@@ -5,6 +5,7 @@ public class Shotgun : MonoBehaviour, IWeapon
 {
     [SerializeField]private Transform[] _muzzles;
     [SerializeField]private GameObject _pellet;
+    [SerializeField]private float _reloadTime;
     private string _weaponName = "Shotgun";
     public string WeaponName
     {

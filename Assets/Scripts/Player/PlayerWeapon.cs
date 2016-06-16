@@ -12,6 +12,7 @@ public class PlayerWeapon : MonoBehaviour
     private int _currentWeaponIndex;
     public int WeaponIndex
     {
+        get { return _currentWeaponIndex; }
         set { _currentWeaponIndex = value; }
     }
     private IWeapon[] _weapons;
