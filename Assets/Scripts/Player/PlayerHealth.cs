@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
 
     void TakeDamage(float _dmg)
     {
+
         _health -= _dmg;
 
         if (_health <= 0)
