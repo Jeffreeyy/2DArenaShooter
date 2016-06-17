@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Explosion2D : MonoBehaviour
 {
+    private AudioSource _source;
+    [SerializeField]private AudioClip _clip;
     [SerializeField]private float _explosionDelay = .01f;
     [SerializeField]private float _explosionRate = 1;
     [SerializeField]private float _maxExplosionSize = 10;
@@ -17,11 +19,13 @@ public class Explosion2D : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        _source = GetComponent<AudioSource>();
         _explosionRadius = GetComponent<CircleCollider2D>();
     }
 
     void OnEnable()
     {
+        _source.PlayOneShot(_clip);
         _explosionDelay = .01f;
     }
 

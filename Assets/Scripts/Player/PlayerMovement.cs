@@ -13,14 +13,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb2d;
     
     private PlayerShoot _shoot;
-    private AudioSource _jumpSound;
+    private AudioSource _source;
+    [SerializeField]private AudioClip _clip;
 
     void Awake()
     {
         _shoot = GetComponent<PlayerShoot>();
         _rb2d = GetComponent<Rigidbody2D>();
         
-        _jumpSound = GetComponent<AudioSource>();
+        _source = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -31,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         _rb2d.velocity = new Vector2(0, 25f);
-        _jumpSound.pitch = Random.Range(.75f, 1.25f);
-        _jumpSound.Play();
+        _source.pitch = Random.Range(.75f, 1.25f);
+        _source.PlayOneShot(_clip);
     }
 
     public void Shoot()
