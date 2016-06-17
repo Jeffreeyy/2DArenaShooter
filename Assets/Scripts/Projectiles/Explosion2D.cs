@@ -19,12 +19,12 @@ public class Explosion2D : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _source = GetComponent<AudioSource>();
         _explosionRadius = GetComponent<CircleCollider2D>();
     }
 
     void OnEnable()
     {
+        _source = GetComponent<AudioSource>();
         _source.PlayOneShot(_clip);
         _explosionDelay = .01f;
     }
