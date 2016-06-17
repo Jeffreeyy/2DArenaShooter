@@ -22,7 +22,7 @@ public class PlayerInput : MonoBehaviour
             _playerMovement.Jump();
         }
 
-        if (Input.GetAxis("Xbox_RT_" + _playerMovement.PlayerID) > 0.25f || Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetAxis("Xbox_RT_" + _playerMovement.PlayerID) > 0.25f)
         {
             _playerMovement.Shoot();
         }
