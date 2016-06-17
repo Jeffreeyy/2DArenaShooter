@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -28,4 +29,12 @@ public class WinScreen : MonoBehaviour
                 break;
         }
 	}
+
+    void Update()
+    {
+        if(Input.GetButtonDown("Xbox_Button_A_all"))
+        {
+            SceneManager.LoadScene(SceneNames.CHARACTERSELECTIONSCENE);
+        }
+    }
 }

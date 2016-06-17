@@ -5,7 +5,10 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField]private GameObject _gun;
 
-    [SerializeField]private float _reloadTime;
+    private float _reloadTime;
+    [SerializeField]private float _shotgunReloadTime;
+    [SerializeField]private float _machinegunReloadTime;
+    [SerializeField]private float _rocketLauncherReloadTime;
     [SerializeField]private float _knockbackAmount;
 
     private bool _canShoot = true;
@@ -24,6 +27,19 @@ public class PlayerShoot : MonoBehaviour
         _playerRigidbody = GetComponent<Rigidbody2D>();
         _shootSound = _gun.GetComponent<AudioSource>();
         _playerWeapon = GetComponent<PlayerWeapon>();
+        
+        switch(_playerWeapon.WeaponIndex)
+        {
+            case 0:
+                _reloadTime = _shotgunReloadTime;
+                break;
+            case 1:
+                _reloadTime = _machinegunReloadTime;
+                break;
+            case 2:
+                _reloadTime = _rocketLauncherReloadTime;
+                break;
+        }
     }
 
     public IEnumerator Shoot()

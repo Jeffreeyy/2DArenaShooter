@@ -1,25 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Win_Loss : MonoBehaviour
 {
-    private GameObject[] _players;
+    [SerializeField]private List<GameObject> _players = new List<GameObject>();
     private int _playerID;
 	// Use this for initialization
 	void Start()
 	{
-        _players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            _players.Add(player);
+        }
+        
+        
 	}
 	
 	// Update() is called once per frame
 	void Update()
 	{
-		if(_players.Length <= 1)
+        for (int i = 0; i < _players.Count; i++)
+        {
+            if(_players[i] == null)
+            {
+                _players.RemoveAt(i);
+            }
+        }
+
+		if(_players.Count == 1)
         {
             _playerID = _players[0].GetComponent<PlayerMovement>().PlayerID;
             PlayerPrefs.SetInt("PlayerWon", _playerID);
             SceneManager.LoadScene(SceneNames.VICTORYSCENE);
         }
+
 	}
 }
