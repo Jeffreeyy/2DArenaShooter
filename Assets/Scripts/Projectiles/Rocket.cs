@@ -6,12 +6,6 @@ public class Rocket : MonoBehaviour
     [SerializeField]private GameObject _rocketDeathParticles;
     [SerializeField]private GameObject _explosion;
     [SerializeField]private float _projectileSpeed;
-
-
-    void Start()
-    {
-
-    }
     
     void Update()
     {
@@ -22,7 +16,6 @@ public class Rocket : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            //col.gameObject.SendMessage("TakeDamage", _projectileDamage.Damage);
             DestroyRocket();
         }
         else if(col.gameObject.tag != "Bullet" || col.gameObject.tag != "Explosion")

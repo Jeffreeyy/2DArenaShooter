@@ -8,6 +8,4 @@ public class ProjectileDamage : MonoBehaviour{
     {
         get { return _damage; }
     }
-
-
 }

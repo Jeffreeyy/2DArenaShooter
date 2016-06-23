@@ -7,7 +7,6 @@ public class DestroyObjectOverTime : MonoBehaviour {
 
 	void OnEnable () 
     {
-        //Destroy(this.gameObject, _destoryTime);
         StartCoroutine(DestroyObject());
 	}
 

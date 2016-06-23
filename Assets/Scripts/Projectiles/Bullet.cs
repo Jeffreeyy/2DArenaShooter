@@ -33,10 +33,4 @@ public class Bullet : MonoBehaviour {
         }
         
     }
-
-    void OnDisable()
-    {
-        //PlayParticles();
-        //Instantiate(_deathParticles, transform.position, Quaternion.identity);
-    }
 }
