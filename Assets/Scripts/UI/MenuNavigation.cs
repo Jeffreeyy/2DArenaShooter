@@ -8,7 +8,7 @@ public class MenuNavigation : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == SceneNames.MENUSCENE)
         {
-            if (Input.GetButtonDown("Xbox_Button_Start_1"))
+            if (Input.GetButtonDown("Xbox_Button_Start_1") || Input.GetButtonDown("Xbox_Button_A_1"))
             {
                 SceneManager.LoadScene(SceneNames.CHARACTERSELECTIONSCENE);
             }

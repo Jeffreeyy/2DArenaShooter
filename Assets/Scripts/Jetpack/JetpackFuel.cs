@@ -10,10 +10,13 @@ public class JetpackFuel : MonoBehaviour
         {
             return _fuel;
         }
+        set
+        {
+            _fuel = value;
+        }
     }
-    private float _chargeAndDrainRate = .1f;
-    [SerializeField]private float _drainAmount;
-    [SerializeField]private float _rechargeAmount;
+    private float _maxFuel;
+    private float _minFuel;
 
     private bool _isUsingJetpack = false;
     public bool IsUsingJetpack
@@ -27,71 +30,28 @@ public class JetpackFuel : MonoBehaviour
             _isUsingJetpack = value;
         }
     }
-    private bool _isDrainingFuel = false;
-    public bool IsDrainingFuel
-    {
-        get
-        {
-            return _isDrainingFuel;
-        }
-        set
-        {
-            _isDrainingFuel = value;
-        }
-    }
-    private bool _isRecharging = true;
-    public bool IsRecharging
-    {
-        set
-        {
-            _isRecharging = value;
-        }
-    }
     
+
+    void Start()
+    {
+        _maxFuel = _fuel;
+        _minFuel = _fuel - _fuel;
+    }
 
     void Update()
     {
-        DrainAndRecharge();
+        CheckMinMaxFuel();
     }
 
-    void DrainAndRecharge()
+    void CheckMinMaxFuel()
     {
-        if (!_isDrainingFuel && _isUsingJetpack)
+        if (_fuel > _maxFuel)
         {
-            StartCoroutine(DrainFuel());
+            _fuel = _maxFuel;
         }
-        else if (!_isRecharging && !_isUsingJetpack)
+        else if (_fuel < _minFuel)
         {
-            StartCoroutine(RechargeFuel());
-        }
-
-        if (_fuel > 200)
-        {
-            _fuel = 200;
-        }
-        else if (_fuel < 0)
-        {
-            _fuel = 0;
-        }
-    }
-
-    IEnumerator DrainFuel()
-    {
-        _isDrainingFuel = true;
-        while(_isDrainingFuel)
-        {
-            yield return new WaitForSeconds(_chargeAndDrainRate);
-            _fuel -= _drainAmount;
-        }
-    }
-
-    IEnumerator RechargeFuel()
-    {
-        _isRecharging = true;
-        while(_isRecharging)
-        {
-            yield return new WaitForSeconds(_chargeAndDrainRate);
-            _fuel += _rechargeAmount;
+            _fuel = _minFuel;
         }
     }
 }

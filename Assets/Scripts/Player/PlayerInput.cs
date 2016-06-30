@@ -6,12 +6,16 @@ public class PlayerInput : MonoBehaviour
     private PlayerGroundCollisionChecker2D _cc2d;
     private PlayerMovement _playerMovement;
     private JetpackFuel _jetpackFuel;
+    private DrainFuel _drainFuel;
+    private RechargeFuel _rechargeFuel;
 	// Use this for initialization
 	void Start()
 	{
 		_cc2d = GetComponent<PlayerGroundCollisionChecker2D>();
         _playerMovement = GetComponent<PlayerMovement>();
         _jetpackFuel = GetComponent<JetpackFuel>();
+        _drainFuel = GetComponent<DrainFuel>();
+        _rechargeFuel = GetComponent<RechargeFuel>();
 	}
 	
 	// Update() is called once per frame
@@ -31,11 +35,11 @@ public class PlayerInput : MonoBehaviour
         {
             _playerMovement.Jetpack();
             _jetpackFuel.IsUsingJetpack = true;
-            _jetpackFuel.IsRecharging = false;
+            _rechargeFuel.IsRecharging = false;
         }
         else 
         {
-            _jetpackFuel.IsDrainingFuel = false;
+            _drainFuel.IsDrainingFuel = false;
             _jetpackFuel.IsUsingJetpack = false;
         }
 	}
