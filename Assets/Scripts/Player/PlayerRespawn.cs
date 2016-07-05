@@ -17,7 +17,7 @@ public class PlayerRespawn : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-        _source = GetComponent<AudioSource>();
+        _source = GetComponentInChildren<AudioSource>();
         _player = transform.GetChild(0).gameObject;
         _playerLives = _player.GetComponent<PlayerLives>();
 	}

@@ -70,7 +70,7 @@ public class Explosion2D : MonoBehaviour
                 {
                     damage = CalcDamage(distanceToPlayer);
                 }
-                col.gameObject.SendMessage("TakeDamage", damage);
+                col.gameObject.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             }
         }
     }

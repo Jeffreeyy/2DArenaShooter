@@ -38,6 +38,7 @@ public class RechargeFuel : MonoBehaviour
         {
             yield return new WaitForSeconds(_rechargeRate);
             _jetpackFuel.Fuel += _rechargeAmount;
+            Debug.Log("recharging");
         }
     }
 }
