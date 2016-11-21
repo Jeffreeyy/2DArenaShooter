@@ -43,6 +43,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jetpack()
     {
-        _rb2d.AddForce(Vector2.up * Input.GetAxis("Xbox_LT_" + _playerID) * 100, ForceMode2D.Force);
+        _rb2d.AddForce(Vector2.up * Input.GetAxisRaw("Xbox_LT_" + _playerID) * 100, ForceMode2D.Force);
     }
 }
